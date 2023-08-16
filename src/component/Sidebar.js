@@ -1,38 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+  const [selectedItem, setSelectedItem] = useState("Home");
+
+  const sideBarItems = [
+    { name: "Home", icon: "" },
+    { name: "Trending", icon: "" },
+    { name: "Music", icon: "" },
+    { name: "Live", icon: "" },
+  ];
+
+  const somePopularChannelsORPlaylists = [
+
+  ]
 
   if (!isMenuOpen) return null;
 
   return (
-    <div className="p-5 shadow-lg w-48">
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>Shorts</li>
-        <li>Videos</li>
-        <li>Lvive</li>
-      </ul>
-
-      <h1 className="font-bold pt-5">Subscriptions</h1>
-      <ul>
-        <li>Music</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
-      </ul>
-
-      <h1 className="font-bold pt-5">Watch Later</h1>
-      <ul>
-        <li>Music</li>
-        <li>Sports</li>
-        <li>Gaming</li>
-        <li>Movies</li>
-      </ul>
+    <div
+      className={`fixed flex min-w-[240px] max-w-[240px] max-h-[100vh] flex-col gap-0.5 px-6 py-4 overflow-y-scroll bg-white`}
+    >
+      {sideBarItems?.map((item, index) => (
+        <Link
+          key={index}
+          to="/"
+          className={
+            "px-4 py-2 rounded-lg hover:bg-hoverGrayBG " +
+            (selectedItem === item?.name && "bg-selectedGrayBG")
+          }
+          onClick={() => setSelectedItem(item?.name)}
+        >
+          Icon: {item?.name}
+        </Link>
+      ))}
+      Add channels of your liking...
     </div>
   );
 };
