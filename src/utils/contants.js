@@ -1,6 +1,11 @@
-const GOOGLE_API_KEY = "AIzaSyCb7J77eG03rKgSn5R83k8DKr7KjCR79CI";
+const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
+// const GOOGLE_API_KEY = "AIzaSyBXESMGWYJAC7dhOBllhKhrUZgURSh0ic4"
 
 export const YOUTUBE_VIDEOS_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=${GOOGLE_API_KEY}`;
+
+export const LIVE_YT = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2CliveStreamingDetails&key=${GOOGLE_API_KEY}`
+
+export const LIVE_CHAT_MSGS = `https://youtube.googleapis.com/youtube/v3/liveChat/messages?part=snippet%2CauthorDetails&key=${GOOGLE_API_KEY}`
 
 export const YOUTUBE_SEARCH_API = `https://corsproxy.io/?http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=`;
 

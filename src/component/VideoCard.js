@@ -1,17 +1,27 @@
 import React from "react";
+import { formatNumber } from "../utils/helper";
 
 const VideoCard = ({ info }) => {
   const { snippet, statistics } = info;
-  const { channelTitle, title, thumbnails } = snippet;
-  const { viewCount } = statistics;
+  // const { channelTitle, title, thumbnails } = snippet;
+  // const { viewCount } = statistics;
 
   return (
-    <div className="p-2 m-2 w-72 shadow-lg">
-      <img className="rounded-lg" alt="thumbnail" src={thumbnails.medium.url} />
+    <div>
+      <img
+        className="rounded-lg"
+        alt="thumbnail"
+        src={snippet?.thumbnails.medium.url}
+      />
       <ul>
-        <li className="font-bold py-2">{title}</li>
-        <li>{channelTitle}</li>
-        <li>{viewCount} views</li>
+        <li
+          className="font-bold py-2 line-clamp-2 h-[60px] group"
+          title={snippet?.title}
+        >
+          {snippet?.title}
+        </li>
+        <li>{snippet?.channelTitle}</li>
+        <li>{formatNumber(statistics?.viewCount)} views</li>
       </ul>
     </div>
   );
